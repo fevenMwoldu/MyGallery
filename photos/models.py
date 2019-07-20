@@ -19,19 +19,25 @@ class Category(models.Model):
 
     def save_category(self):
         self.save()
-        
 
 class Image(models.Model):
     Img_name = models.CharField(max_length =30)
     Img_description = models.CharField(max_length =200)
     image = models.ImageField(upload_to = 'photos/')
-    location = models.ForeignKey(Location)
     category = models.ForeignKey(Category)
-    
+    location = models.ForeignKey(Location)
 
     def __str__(self):
         return self.Img_name
 
     def save_Img(self):
         self.save()
+
+    @classmethod
+    def search_by_category(cls,search_term):
+        pics = cls.objects.filter(category__Cat_name__icontains=search_term)
+        return pics
+
+    
+   
     

@@ -1,0 +1,28 @@
+{%extends 'all-photos/base.html'%} {% block content %}
+<div class="container">
+
+    <div class="row">
+        {% if photos %}
+        <h2>Found {{ photos|length }} photos of {{category_name}}</h2>
+        {% else %}
+        <h2> {{message}}</h2>
+        {% endif %}
+
+    </div>
+
+    {% if photos %} {% for photo in photos %}
+    <div class="row">
+        <!-- displaying the name of the Image-->
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <h2 class="text-center"> {{ photo.Img_name }} </h2>
+        </div>
+
+        <!--Display images  -->
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <img src="{{photo.image.url}}" class="img-responsive" alt="Image">
+        </div>
+    </div>
+    {% endfor %} {% endif %}
+
+</div>
+{% endblock %}
