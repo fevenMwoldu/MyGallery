@@ -1,5 +1,9 @@
+# General Settings
 .vscode/
 virtual/
 *.env
 __pycache__/
+
+# Project Specific Settings
 media/photos/
+
