@@ -3,7 +3,7 @@
 
     <div class="row">
         {% if photos %}
-        <h2>Found {{ photos|length }} photos of {{category_name}}</h2>
+        <h2>Found {{ photos|length }} photos of {{search_term}}</h2>
         {% else %}
         <h2> {{message}}</h2>
         {% endif %}

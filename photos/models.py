@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.db.models import Q
 # Create your models here.
 
 class Location(models.Model):
@@ -34,8 +34,8 @@ class Image(models.Model):
         self.save()
 
     @classmethod
-    def search_by_category(cls,search_term):
-        pics = cls.objects.filter(category__Cat_name__icontains=search_term)
+    def search_by_category_or_location(cls,search_term):
+        pics = cls.objects.filter(Q(category__Cat_name__icontains=search_term)|Q(location__Loc_name__icontains=search_term))
         return pics
 
     

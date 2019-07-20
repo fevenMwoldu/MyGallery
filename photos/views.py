@@ -8,19 +8,19 @@ def welcome(request):
     return render(request, 'index.html',{"photos": photos})
 
 
-# GET /search/?category=city 
+# GET /search/?search_term=city 
 def search_results(request):
 
-    if 'category' in request.GET and request.GET["category"]:
-        category_name = request.GET.get("category")
-        photos = Image.search_by_category(category_name)
+    if 'search_term' in request.GET and request.GET["search_term"]:
+        search_term = request.GET.get("search_term")
+        photos = Image.search_by_category_or_location(search_term)
         
         if len(photos) > 0:
-            return render(request, 'all-photos/search.html',{"category_name": category_name, "photos": photos})
+            return render(request, 'all-photos/search.html',{"search_term": search_term, "photos": photos})
         else:
-            message = "No photos found for category " + category_name
+            message = "No photos found for category or location of " + search_term
             return render(request, 'all-photos/search.html',{"message":message})
 
     else:
-        message = "You haven't searched for any term"
+        message = "You haven't searched for any category or location."
         return render(request, 'all-photos/search.html',{"message":message})
