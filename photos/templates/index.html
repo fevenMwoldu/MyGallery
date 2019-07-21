@@ -16,7 +16,7 @@
         <!--Display images  -->
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
             <img src="{{photo.image.url}}" class="img-responsive" alt="Image" data-toggle="modal" data-target="#photo_detail_{{ photo.id }}">
-            <p>http://127.0.0.1:5000{{photo.image.url}}</p>
+            <button class="btn btn-secondary" onclick="setClipboard('http://127.0.0.1:8000{{photo.image.url}}')">Copy text</button>
         </div>
 
         <div class="modal fade" id="photo_detail_{{ photo.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -41,5 +41,17 @@
 
         {% endfor %}
     </div>
+
+    <script>
+        function setClipboard(value) {
+            var tempInput = document.createElement("input");
+            tempInput.style = "position: absolute; left: -1000px; top: -1000px";
+            tempInput.value = value;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+        }
+    </script>
 
     {% endblock %}
