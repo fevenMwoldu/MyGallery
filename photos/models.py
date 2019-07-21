@@ -33,6 +33,9 @@ class Image(models.Model):
     def save_Img(self):
         self.save()
 
+    def delete_Img(self):
+        self.delete()
+
     @classmethod
     def search_by_category_or_location(cls,search_term):
         pics = cls.objects.filter(Q(category__Cat_name__icontains=search_term)|Q(location__Loc_name__icontains=search_term))
